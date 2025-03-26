@@ -1,0 +1,29 @@
+# Ignoring the environment configuration
+.env
+gitignore
+
+# Ignoring the vendor directory (composer dependencies)
+/vendor/
+
+# Ignoring the public/assets directory
+#/public/assets/
+
+# Ignoring cache and sessions
+/writable/cache/*
+/writable/logs/*
+/writable/session/*
+/writable/temp/*
+/writable/uploads/*
+# Ignoring the application cache directory
+/app/Config/Cache/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE configurations
+.idea/
+.vscode/
+
+# Ignore npm/yarn dependencies
+node_modules/

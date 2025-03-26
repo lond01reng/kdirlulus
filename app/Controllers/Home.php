@@ -30,6 +30,7 @@ class Home extends BaseController
     }
     public function detailInfo(){
       $info = session()->get('data');
+      $sch=!empty($this->sekolah->getPSch())?$this->sekolah->getPSch():$this->sekolah->getOSch();
       if(!empty($info)){
         $data=[
           'title'=>'Hasil Kelulusan '.$info->sw_nama,
@@ -37,6 +38,7 @@ class Home extends BaseController
           'clr'=>'purple',
           'publish'=>$this->publish->waktuPublis(),
           'info'=>$info,
+          'sch'=>$sch,
         ];
         return view('detail_info',$data);
       }else{
@@ -65,8 +67,7 @@ class Home extends BaseController
       {
         return redirect()->to(base_url('/'))->withInput()->with('errors', $this->validator->getErrors());
       }else{
-        $pub=$this->publish->waktuPublis();
-        $info=$this->siswa->getNis($nisn,$tgl,$pub->pb_id);
+        $info=$this->siswa->getNis($nisn,$tgl);
         return redirect()->to(base_url('info_detail'))->with('data', $info);
       }
     }

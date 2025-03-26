@@ -34,13 +34,7 @@ class TapelModel extends Model
     return $this->db->table($this->table)->where('tp_id', $srtp)->get();
   }
   public function cekTp($srtp,$lgtp){
-    // $qr = $this->db->table($this->table)->where('tp_id', $srtp)->get();
-    // $tp=$this->getRow();
     $tp=$this->getTp($srtp)->getRow();
-    // var_dump($tp);
-    // $this->db->getLastQuery();
-    
-    // perbaiki disini
     if(empty($tp) && strlen($lgtp)=='9') {
       return $this->insertTp($srtp, $lgtp);
     }elseif(!empty($tp)){
@@ -48,7 +42,6 @@ class TapelModel extends Model
     }else{
       return false;
     }
- // perbaiki disini
   }
 
   public function insertTp($srtp,$lgtp) {

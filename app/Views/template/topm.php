@@ -29,7 +29,7 @@ $clr='purple';
         ?>
         <img src="<?=$img;?>" alt="kdirLULUS Logo" class="brand-image img-circle elevation-1" style="opacity: .8">
 
-        <span class="brand-text font-weight-light"><?= esc($sch->sc_nama); ?></span>
+        <span class="brand-text font-weight-light"><?= !empty($sch->sc_nama)?esc($sch->sc_nama):'kdir'; ?></span>
       </a>
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

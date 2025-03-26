@@ -27,18 +27,13 @@ class SiswaModel extends Model
     return $this->find();
   }
   public function getHapus(){
-    // $this->where('sw_tapel', session('tapel'));
-    // $this->where('sw_dl IS NOT NULL');
-    // return $this->withDeleted()->findAll();
     return $this->onlyDeleted()->findAll();   
   }
 
-  public function getNis($nis) {
+  public function getNis($nis,$tgl) {
     $this->db->table($this->table);
-    $this->where('sw_nis', $nis);
-    // $this->where('sw_tgl',$tgl);
-    // $this->where('sw_tapel',$pub);
-
+    $this->where('sw_nisn', $nis);
+    $this->where('sw_tgl', $tgl);
     return $this->first();
   }
 
@@ -88,8 +83,6 @@ class SiswaModel extends Model
           $tapelModel = new \App\Models\TapelModel();
           $cektpmodel=$tapelModel->cekTp($srth, $lgth);
 
-          // var_dump($cektpmodel);
-
 //cek kembali          
           if($cektpmodel===FALSE){
             fclose($file);
@@ -97,8 +90,8 @@ class SiswaModel extends Model
             return 'dbtp_insert_error';
           }
 //cek kembali
-          fseek($file, 0, SEEK_SET);  // Kembali ke awal file
-          fgetcsv($file, 0, ';');  // Lewati baris pertama (header)
+          fseek($file, 0, SEEK_SET); 
+          fgetcsv($file, 0, ';'); 
           $data=[];
           while(($row=fgetcsv($file, 0, ';'))!== false){
             $dtRow=array_combine($header,$row);
@@ -122,11 +115,7 @@ class SiswaModel extends Model
             unlink($csv);
             session()->setFlashdata('inth', $lgtp);
             return true;
-            // tambahkan jika upload tapel sukses langsung logout
           }
-//cek kembali
-
-
         // }
       // }
     // }

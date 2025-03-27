@@ -4,6 +4,7 @@
 <?php if(!empty($publish)): ?>
 <?php
 $tp='20'.$publish->pb_id.'/20'.$publish->pb_id+1;
+$scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
 ?>
     <div class="row text-center">
       <div class="col-12">
@@ -14,9 +15,9 @@ $tp='20'.$publish->pb_id.'/20'.$publish->pb_id+1;
           $img= base_url('assets/img/favicon.png');
         }
       ?>
-      <img src="<?=$img;?>" alt="sekolahLogo" class="img-circle elevation-1" width="150px">
+      <img src="<?=$img;?>" alt="sekolahLogo" class="" width="150px">
       <h2>
-      <?= esc($sch->sc_nama); ?>
+      <?= $scnm; ?>
       </h2>
       </div>
     </div>

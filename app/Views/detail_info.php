@@ -1,4 +1,7 @@
 <?= $this->extend('template/topm') ?>
+<?= $this->section('css') ?>
+<?= $this->endSection() ?> 
+<?= $this->extend('template/topm') ?>
 <?= $this->section('konten') ?>
   <div class="card-body">
     <div class="row">
@@ -26,7 +29,8 @@
           <h3 class="card-title">Pengumuman Kelulusan <?=$sch->sc_nama;?><br>Tahun <?='20'.$info->sw_tapel.'/20'.($info->sw_tapel+1);?></h3>
         </div>
         <div class="card-body">
-          <table class="table table-sm">
+          <table class="table table-borderless table-sm">
+          <i class="fa fa-star fa-background"></i>
             <tbody>
               <tr>
                 <td>Nama</td><td><?=strtoupper($info->sw_nama);?></td>
@@ -55,7 +59,6 @@
       </div>
     </div>
     <?php
-  print_r($info);
   ?>
     </div>
   </div>

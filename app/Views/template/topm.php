@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="<?= base_url()?>assets/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url()?>assets/lte/css/adminlte.min.css">
+  <?= $this->renderSection('css'); ?>
 </head>
 <?php
 $clr='purple';

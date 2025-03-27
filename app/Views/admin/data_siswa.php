@@ -81,7 +81,6 @@
         </div>
       </div>
     </div>
-  <!-- </div> -->
 <?= $this->endSection() ?> 
 
 <?= $this->extend('template/temp') ?>
@@ -96,7 +95,6 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 })
 
   $(document).ready(function () {
-  // Fungsi untuk menangani AJAX request dan menampilkan modal
   function loadModal(url, modalId) {
     $.ajax({
       url: url,
@@ -111,17 +109,14 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     });
   }
 
-  // Event untuk tombol tambah siswa
   $('#mSiswa').click(function () {
     loadModal('<?= base_url('admin/tambah_siswa'); ?>', '#myModal');
   });
 
-  // Event untuk tombol edit siswa
   $(document).on('click', '.mEdit', function () {
     var id = $(this).data('id');
     loadModal('<?= base_url('admin/edit_biodata/'); ?>' + id, '#edModal');
   });
-
 
   $(document).on('click', '.mDell', function () {
     var id = $(this).data('id');
@@ -133,7 +128,6 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     loadModal('<?= base_url('admin/pulihkan_siswa/'); ?>'+ id, '#mRestore');
   });
 
-  // Hapus modal setelah ditutup
   $(document).on('hidden.bs.modal', '.modal', function () {
     $(this).remove();
   });

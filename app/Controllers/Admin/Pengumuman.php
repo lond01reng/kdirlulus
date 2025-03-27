@@ -21,12 +21,10 @@ class Pengumuman extends BaseController
     $this->publish=new PublishModel();
     $this->info=new InfoModel();
     $this->sekolah=new SekolahModel();
-
   }
   public function index()
   {
     $vwaktu = $this->publish->getWaktu();
-
     if (empty($vwaktu)) {
         $vwaktu = new \stdClass();
         $vwaktu->pb_status = '0';
@@ -39,13 +37,10 @@ class Pengumuman extends BaseController
       'info' => $this->info->getPengumuman(),
       'sch'=>$this->sekolah->getSch(),
     ];
-
     return view('admin/pengumuman',$data);
   }
 
   public function editWaktu(){
-    // $tpl=$this->tapel->getTp();
-    // if(!empty($tpl->getRow())){
       $data=$this->publish->getWaktu();
       return view('admin/modal_waktu', ['data' => $data]);  
   }
@@ -112,7 +107,6 @@ class Pengumuman extends BaseController
             'if_tapel'=> session('tapel'),
           ];
         }else{
-          // $tempErrors []= [$validation->getErrors()];
           $allErrors = array_merge_recursive($allErrors, $validation->getErrors());
         }
       }
@@ -122,7 +116,6 @@ class Pengumuman extends BaseController
       }
 
       if (!empty($validData)) {
-         
           foreach ($validData as $index => $data) {
               if (isset($infoId[$index]) && !empty($infoId[$index])) {
                   $data['if_id'] = $infoId[$index];
@@ -133,13 +126,9 @@ class Pengumuman extends BaseController
           }
       }
       if (!empty($allErrors)) {
-        return redirect()->to('admin/pengumuman')->with('errors', $toInfo);
-        // return redirect()->to('admin/pengumuman')->with('errors', $allErrors);
-        
+        return redirect()->to('admin/pengumuman')->with('errors', $toInfo);      
       }
-      
       return redirect()->to('admin/pengumuman');
-
       
   }
   

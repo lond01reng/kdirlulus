@@ -30,7 +30,6 @@ class Home extends BaseController
       'waktu'=>$this->publish->getWaktu(),
       'sch'=>$this->sekolah->getSch(),
     ];
-    // $this->siswa->getLastQuery();
     return view('admin/home',$data);
   }
 }

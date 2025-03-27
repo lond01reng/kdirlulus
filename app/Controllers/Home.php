@@ -67,7 +67,7 @@ class Home extends BaseController
       {
         return redirect()->to(base_url('/'))->withInput()->with('errors', $this->validator->getErrors());
       }else{
-        $info=$this->siswa->getNis($nisn,$tgl);
+        $info=$this->siswa->getNisn($nisn,$tgl);
         return redirect()->to(base_url('info_detail'))->with('data', $info);
       }
     }

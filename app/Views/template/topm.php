@@ -50,21 +50,18 @@ $clr='purple';
           <div class="col-lg-12 mt-3">
             <div class="card card-primary card-outline <?= empty($publish) ||  $publish->pb_status !== '1'?' bg-dark text-white':''; ?>">
               <div class="card-body">
-                <!-- conten disini -->
                 <?= $this->renderSection('konten'); ?>
-                <!-- conten disini -->
               </div>
             </div>
           </div>
       </div>
     </div>
   </div>
-
   <footer class="main-footer text-sm">
-    <div class="float-right d-none d-sm-inline">
+    <!-- <div class="float-right d-none d-sm-inline">
       dikembangkan oleh SMKN<strong>Ngadirojo</strong>
-    </div>
-    <strong>Copyright © 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </div> -->
+    <strong>Copyright © 2025 <a href="https://www.smknngadirojo.sch.id/">kdir</a>.</strong> All rights reserved.
   </footer>
 </div>
 

@@ -8,7 +8,6 @@
     <div class="container-fluid">
       <div class="row">
         <?= view('admin/info_sesi'); ?>
-        <!-- waktu -->
         <div class="col-lg-6 col-6">
           <div class="small-box bg-<?=!empty($publish->pb_waktu)?$clr:'secondary';?>">
             <div class="inner">
@@ -35,9 +34,6 @@
             </button>
           </div>
         </div>
-        <!-- waktu -->
-
-        <!-- publish -->
         <div class="col-lg-6 col-6">
           <div class="small-box bg-<?=$publish->pb_status==0?'secondary':$clr;?>">
             <div class="inner">
@@ -49,14 +45,12 @@
                   echo '<h3>Belum </h3>';
                   echo '<h3>Dipublikasikan</h3>';
                 }
-
               ?>
               Publikasi Pengumuman
             </div>
             <div class="icon">
               <i class="fas fa-network-wired"></i>
             </div>
-
               <button type="button" class="btn btn-sm w-100 small-box-footer" id="<?=!empty($publish->pb_waktu)?'publis':'publish'?>">
               <?php if ($publish->pb_status==1): ?>
                   Jangan Publikasikan <i class="fas fa-arrow-circle-right"></i>
@@ -67,9 +61,6 @@
 
           </div>
         </div>
-        <!-- publish -->
-        <!-- pengumuman -->
-
         <div class="col-12">
         <h4>Pengumuman Kelulusan</h4>
         <form action="<?= base_url('admin/simpan_info') ?>" method="POST">
@@ -80,7 +71,6 @@
           </div>
         </form>
         </div>
-
     <script>
       let ctInfo = 0;
       function tambahInfo() {
@@ -89,7 +79,6 @@
         const newDiv = document.createElement('div');
         newDiv.id = 'info_' + ctInfo;
         newDiv.classList.add('mb-3');
-
         newDiv.innerHTML = `
           <div class="input-group">
             <span type="button" class="btn btn-danger">${ctInfo}</span>
@@ -101,28 +90,25 @@
       }
 
       function delInfo(id) {
-        const infoDiv = document.getElementById('info_' + id);  // Mendapatkan elemen div dengan ID info_${id}
-        
+        const infoDiv = document.getElementById('info_' + id);          
         if (!infoDiv) {
           console.log('Elemen dengan id "info_' + id + '" tidak ditemukan.');
           return;
         }
         infoDiv.remove();
 
-        const infoIdElement = infoDiv.querySelector('input[name="info_id[]"]');  // Memilih input dengan name info_id[]
-        
+        const infoIdElement = infoDiv.querySelector('input[name="info_id[]"]');
         if (infoIdElement) {
-            const infoId = infoIdElement.value;  // Mengambil value dari input
-            console.log('info_id ditemukan:', infoId);  // Debugging, memastikan id ditemukan
-            
+            const infoId = infoIdElement.value;
+            // console.log('info_id ditemukan:', infoId);
             fetch('<?= base_url('admin/hapus_info') ?>', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': '<?= csrf_hash() ?>'  // Menyertakan token CSRF untuk keamanan
+                    'X-CSRF-TOKEN': '<?= csrf_hash() ?>'
                 },
-                body: JSON.stringify({ info_id: infoId })  // Mengirimkan info_id sebagai body
+                body: JSON.stringify({ info_id: infoId })
             })
             .then(response => response.json())
             .then(data => {
@@ -140,19 +126,15 @@
         }
     }
 
-
-
       const dataPengumuman = <?= json_encode($info) ?>;
       function isiForm(data) {
         const divInfo = document.getElementById('divInfo');
-        divInfo.innerHTML = ''; // Kosongkan dulu divInfo sebelum diisi data
-
+        divInfo.innerHTML = '';
           data.forEach((item, index) => {
             ctInfo++;
             const newDiv = document.createElement('div');
             newDiv.id = 'info_' + ctInfo;
             newDiv.classList.add('mb-2');
-
             newDiv.innerHTML = `
               <div class="input-group">
                 <input type="hidden" name="info_id[]" value="${item.if_id}">
@@ -164,15 +146,10 @@
             divInfo.appendChild(newDiv);
           });
       }
-
-
       if (dataPengumuman.length > 0) {
         isiForm(dataPengumuman);
       }
-    </script>
-
-
-        <!-- pengumuman -->   
+    </script> 
       </div>
     </div>
   </div>

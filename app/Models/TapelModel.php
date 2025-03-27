@@ -56,6 +56,5 @@ class TapelModel extends Model
       return false;
     }
   }
-
    
 }

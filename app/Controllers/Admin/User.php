@@ -82,7 +82,6 @@ class User extends BaseController
           $imageName = base_url('uploads/logo_sekolah.jpg');
           return redirect()->to(base_url('admin/profil'))->with('message', 'Image uploaded successfully!')->with('image', $imageName);
       }
-
       return redirect()->to(base_url('admin/profil'))->with('message', 'Failed to upload image.');
   }
 

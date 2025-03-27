@@ -14,6 +14,7 @@ gitignore
 /writable/session/*
 /writable/temp/*
 /writable/uploads/*
+/writable/debugbar/*
 # Ignoring the application cache directory
 /app/Config/Cache/
 

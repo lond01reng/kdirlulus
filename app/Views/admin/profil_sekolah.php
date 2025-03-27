@@ -1,5 +1,4 @@
 <div class="tab-pane fade" id="a_sekolah" role="tabpanel" aria-labelledby="item_sekolah">
-
     <div class="row">
       <div class="col-sm-3 d-flex justify-content-center align-items-center">
       <form action="<?=base_url('admin/upload_logo_sekolah') ?>" method="post" enctype="multipart/form-data">
@@ -14,7 +13,6 @@
             <img src="<?=base_url();?>assets/img/favicon.png" id="imagePreview" alt="kdirLULUS Logo" class="img-fluid elevation-3" style="opacity: .8" width="200px" >
           <?php endif; ?>
         </div>
-        
         <input type="file" name="image" class="d-none" id="imageInput" onchange="this.form.submit()">
         <button class="btn w-100" onclick="document.getElementById('imageInput').click();">Ganti Gambar</button>
       </form>
@@ -59,8 +57,6 @@
         </form> 
       </div>
     </div>
-
-   
     <script>
         document.getElementById('imagePreview').addEventListener('click', function() {
             document.getElementById('imageInput').click();

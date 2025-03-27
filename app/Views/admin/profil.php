@@ -9,7 +9,6 @@
         <div class="row">
           <div class="col-md-12 table-responsive">
             <?= view('admin/info_sesi'); ?>
-<!-- tab -->
             <div class="card card-<?=$clr;?> card-outline card-outline-tabs">
               <div class="card-header p-0 border-bottom-0">
                 <ul class="nav nav-tabs" id="tab_profil" role="tablist">
@@ -36,7 +35,6 @@
                 </div>
               </div>
             </div>
-<!-- tab -->
           </div>
         </div>
       </div>
@@ -50,26 +48,17 @@
 <script>
 
   $(document).ready(function () {
-    // Ketika tab diklik
     $('#tab_profil a').on('click', function (e) {
         e.preventDefault();
-        
-        // Menyimpan id tab yang dipilih di sessionStorage
         var activeTab = $(this).attr('href');
         sessionStorage.setItem('activeTab', activeTab);
-        
-        // Menampilkan tab yang dipilih
         $(this).tab('show');
     });
-
-    // Memulihkan tab yang aktif saat halaman dimuat
     var activeTab = sessionStorage.getItem('activeTab');
     if (activeTab) {
-        // Memulihkan tab yang tersimpan sebelumnya
         $('#tab_profil a[href="' + activeTab + '"]').tab('show');
     }
 });
-
 </script>
 <?php endif; ?>
 <?= $this->endSection() ?> 

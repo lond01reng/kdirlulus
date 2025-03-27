@@ -7,9 +7,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <!-- <div class="col-md-12 table-responsive"> -->
           <?= view('admin/info_sesi'); ?>
-          <!-- lulus -->
           <div class="col-lg-6 col-6">
             <div class="small-box bg-info">
               <div class="inner">
@@ -19,13 +17,8 @@
               <div class="icon">
                 <i class="fas fa-user-graduate"></i>
               </div>
-              <!-- <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a> -->
             </div>
           </div>
-          <!-- lulus -->  
-          <!-- tidak lulus -->
           <div class="col-lg-6 col-6">
             <div class="small-box bg-dark">
               <div class="inner">
@@ -35,13 +28,8 @@
               <div class="icon">
                 <i class="fas fa-user-slash"></i>
               </div>
-              <!-- <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a> -->
             </div>
           </div>
-          <!-- tidak lulus --> 
-           <!-- waktu -->
           <div class="col-lg-6 col-6">
             <div class="small-box bg-<?=!empty($waktu->pb_waktu)?$clr:'secondary';?>">
               <div class="inner">
@@ -61,32 +49,25 @@
               </div>
             </div>
           </div>
-        <!-- waktu --> 
-
-        <!-- publish -->
         <div class="col-lg-6 col-6">
-            <div class="small-box bg-<?=$waktu->pb_status==0?'secondary':$clr;?>">
+            <div class="small-box bg-<?=(empty($waktu->pb_status)|| $waktu->pb_status==0)?'secondary':$clr;?>">
               <div class="inner">
                 <?php 
-                  if ($waktu->pb_status==1){
-                    echo '<h3>Bisa ';
-                    echo '<h3>Diakses Siswa</h3>';
-                  }else{
+                  if (empty($waktu->pb_status)|| $waktu->pb_status==0){
                     echo '<h3>Belum </h3>';
                     echo '<h3>Dipublikasikan</h3>';
+                  }else{
+                    echo '<h3>Bisa ';
+                    echo '<h3>Diakses Siswa</h3>';                   
                   }
-
                 ?>
                 Publikasi Pengumuman
               </div>
               <div class="icon">
                 <i class="fas fa-network-wired"></i>
               </div>
-
             </div>
           </div>
-<!-- publish --> 
-
         </div>
       </div>
     </div>

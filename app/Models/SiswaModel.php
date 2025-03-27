@@ -30,10 +30,9 @@ class SiswaModel extends Model
     return $this->onlyDeleted()->findAll();   
   }
 
-  public function getNis($nis,$tgl) {
+  public function getNis($nis) {
     $this->db->table($this->table);
-    $this->where('sw_nisn', $nis);
-    $this->where('sw_tgl', $tgl);
+    $this->where('sw_nis', $nis);
     return $this->first();
   }
 
@@ -43,12 +42,10 @@ class SiswaModel extends Model
     $this->where('sw_dl IS NOT NULL');
     return $this->withDeleted()->first();
   }
-  public function getNisn($nis,$tgl,$pub) {
+  public function getNisn($nis,$tgl) {
     $this->db->table($this->table);
     $this->where('sw_nisn', $nis);
     $this->where('sw_tgl',$tgl);
-    $this->where('sw_tapel',$pub);
-
     return $this->first();
   }
 

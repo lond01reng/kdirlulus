@@ -28,7 +28,6 @@ class InfoModel extends Model
 
     public function savePengumuman($data)
     {
-        // print_r($data);
         return $this->save($data);
     }
     

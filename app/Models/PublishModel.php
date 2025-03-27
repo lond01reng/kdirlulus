@@ -42,7 +42,6 @@ class PublishModel extends Model
         } 
     }
     public function simpanPublis($stat){
-
         $this->set('pb_status', '0');
         $this->where('pb_id !=', session('tapel'));
         $this->update();
@@ -53,7 +52,6 @@ class PublishModel extends Model
     }
     public function waktuPublis(){
         $this->db->table($this->table);
-        // $this->where('pb_status','1');
         $this->orderBY('pb_id','desc');
         return $this->first();
     }

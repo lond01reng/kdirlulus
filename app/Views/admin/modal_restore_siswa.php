@@ -19,20 +19,15 @@
           <div class="col-6">
           <form action="<?=base_url('admin/pulihkan_data_siswa')?>" method="POST">
           <?= csrf_field() ?>
-            <input type="hidden" name="rsSiswa" value="<?=$data->sw_nis?>"> <!-- Menggunakan metode DELETE jika diperlukan -->
+            <input type="hidden" name="rsSiswa" value="<?=$data->sw_nis?>">
             <button type="submit"  class="btn btn-sm btn-info w-100">Pulihkan Data</button>
         </form>
-
           </div>
           <div class="col-6">
           <button type="button" class="btn btn-sm btn-danger w-100" data-bs-dismiss="modal"><i class="fas fa-times-circle"></i> Batal</button>
           </div>
         </div>
-
       </div>
-
-      
-
     </div>
   </div>
 </div>

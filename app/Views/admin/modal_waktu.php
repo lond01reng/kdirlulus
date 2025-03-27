@@ -7,7 +7,6 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      
       <div class="modal-body">
         <form action="<?= base_url('admin/simpan_waktu'); ?>" method="POST" enctype="multipart/form-data">
         <?= csrf_field() ?>
@@ -17,7 +16,6 @@
         </form>
         <button type="button" class="btn btn-sm btn-danger float-right" data-bs-dismiss="modal"><i class="fas fa-times-circle"></i> Batal</button>
       </div>
-
     </div>
   </div>
 </div>

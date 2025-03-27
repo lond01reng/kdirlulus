@@ -5,7 +5,6 @@
 <?php
 $tp='20'.$publish->pb_id.'/20'.$publish->pb_id+1;
 ?>
-  <!-- <div class="card-body"> -->
     <div class="row text-center">
       <div class="col-12">
       <?php  $uploadPath = ROOTPATH . 'public/uploads/logo_sekolah.jpg';
@@ -93,9 +92,8 @@ $tp='20'.$publish->pb_id.'/20'.$publish->pb_id+1;
     <?php endif; ?>
 
     </div>
-  <!-- </div> -->
 <?php else: ?>
-  <div class="card-body bg-dark">
+  <div class="card-body bg-dark text-center">
     <h1><i class="fas fa-pencil-ruler text-warning"></i> Maintenance...</h1>
   </div>
 <?php endif ?>

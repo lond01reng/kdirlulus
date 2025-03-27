@@ -7,7 +7,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            
             <div class="modal-body">
             <form action="<?= base_url('admin/simpan_siswa'); ?>" method="POST" enctype="multipart/form-data">
             <?= csrf_field() ?>
@@ -20,8 +19,6 @@
               <button type="button" class="btn btn-sm btn-danger float-right" data-bs-dismiss="modal"><i class="fas fa-times-circle"></i> Batal</button>
             </form>
             </div>
-
         </div>
     </div>
 </div>
-

@@ -54,7 +54,6 @@ class Siswa extends BaseController
       $file->move(WRITEPATH.'temp',$newf);
       $newPath=WRITEPATH.'temp/'.$newf;
       $result=$this->siswa->importSiswa($newPath);
-      // var_dump($th);
       if($result==='file_not_found'){
         return redirect()->to('admin/data_siswa')->with('errors',['File csv tidak ditemukan']);
       }elseif($result==='invalid_data'){
@@ -64,10 +63,10 @@ class Siswa extends BaseController
       }elseif($result==='dbtp_insert_error'){
         return redirect()->to('admin/data_siswa')->with('errors',['Gagal menyimpan Tahun Pelajaran ke dalam data base']);
       }elseif($result==='invalid_column_names'){
-        return redirect()->to('admin/data_siswa')->with('errors',['Gunakan template dan nama kolom jangan diganti']);//
+        return redirect()->to('admin/data_siswa')->with('errors',['Gunakan template dan nama kolom jangan diganti']);
       }
       else{
-        return redirect()->to('admin/data_siswa')->with('success', 'Data Siswa '.session()->getFlashdata('inth').' berhasil diimport!, Silahkan Logout dan Pilih Tahun Pelajaran yang sesuai');  //??
+        return redirect()->to('admin/data_siswa')->with('success', 'Data Siswa '.session()->getFlashdata('inth').' berhasil diimport!, Silahkan Logout dan Pilih Tahun Pelajaran yang sesuai');
       }
       
     }else{
@@ -149,7 +148,6 @@ class Siswa extends BaseController
       ];
       $this->siswa->updateBio($nis,$data);
       return redirect()->to(base_url('admin/data_siswa'))->with('success', 'Data berhasil dirubah');
-      // return redirect()->back()->with('success', 'Data berhasil dirubah');
     }
   }
 

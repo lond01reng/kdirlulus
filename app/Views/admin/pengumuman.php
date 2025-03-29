@@ -25,7 +25,7 @@
             <div class="icon">
             <i class="fas fa-clock"></i>
             </div>
-            <button type="button" class="btn btn-sm w-100 small-box-footer" id="omWaktu">
+            <button type="button" class="btn btn-sm w-100 small-box-footer" id="<?=!empty(session('tapel'))?"omWaktu":"onWaktu";?>">
             <?php if (!empty($publish->pb_waktu)): ?>
                 Ubah Waktu Pengumuman <i class="fas fa-arrow-circle-right"></i>
             <?php else: ?>
@@ -63,6 +63,7 @@
         </div>
         <div class="col-12">
         <h4>Pengumuman Kelulusan</h4>
+        <?php if(!empty($publish->pb_id)): ?>
         <form action="<?= base_url('admin/simpan_info') ?>" method="POST">
         <?= csrf_field() ?>
           <div id="divInfo"></div>
@@ -70,6 +71,7 @@
             <button type="button" class="btn btn-primary" onclick="tambahInfo(); return false;">Tambah Pengumuman</button> <button type="submit" class="btn btn-success">Simpan</button>
           </div>
         </form>
+        <?php endif;?>
         </div>
     <script>
       let ctInfo = 0;

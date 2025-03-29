@@ -82,73 +82,65 @@ class Pengumuman extends BaseController
 
   public function simpanInfo()
   {
-      $pengumumanData = $this->request->getPost('info');
-      $infoId = $this->request->getPost('info_id');
-      $validation = \Config\Services::validation();
-      $allErrors = [];
-      $validData = [];
+    $pengumumanData = $this->request->getPost('info');
+    $infoId = $this->request->getPost('info_id');
+    $validation = \Config\Services::validation();
+    $allErrors = [];
+    $validData = [];
 
-      $validasiHasil = [];
-      foreach ($pengumumanData as $index => $pengumuman) {
-          $validation->reset();
-          $validation->setRules([
-              'info' => [
-                  'rules' => 'required|trim|min_length[24]|alpha_numeric_punct',
-                  'errors' => [
-                      'required' => 'Isikan pengumuman ke ' . ($index + 1),
-                      'min_length' => 'Pengumuman ke ' . ($index + 1) . ' minimal 24 karakter',
-                      'alpha_numeric_punct' => 'Terdapat karakter ilegal dalam pengumuman ' . ($index + 1),
-                  ]
-              ],
-          ]);
-        if($validation->run(['info' => $pengumuman])) {
-          $validData[] = [
-            'if_desc' => $pengumuman,
-            'if_tapel'=> session('tapel'),
-          ];
-        }else{
-          $allErrors = array_merge_recursive($allErrors, $validation->getErrors());
-        }
+    $validasiHasil = [];
+    foreach ($pengumumanData as $index => $pengumuman) {
+        $validation->reset();
+        $validation->setRules([
+          'info' => [
+            'rules' => 'required|trim|min_length[24]|alpha_numeric_punct',
+            'errors' => [
+              'required' => 'Isikan pengumuman ke ' . ($index + 1),
+              'min_length' => 'Pengumuman ke ' . ($index + 1) . ' minimal 24 karakter',
+              'alpha_numeric_punct' => 'Terdapat karakter ilegal dalam pengumuman ' . ($index + 1),
+            ]
+          ],
+        ]);
+      if($validation->run(['info' => $pengumuman])) {
+        $validData[] = [
+          'if_desc' => $pengumuman,
+          'if_tapel'=> session('tapel'),
+        ];
+      }else{
+        $allErrors = array_merge_recursive($allErrors, $validation->getErrors());
       }
-
-      if(array_key_exists('info', $allErrors)){
-        $toInfo=$allErrors['info'];
-      }
-
-      if (!empty($validData)) {
-          foreach ($validData as $index => $data) {
-              if (isset($infoId[$index]) && !empty($infoId[$index])) {
-                  $data['if_id'] = $infoId[$index];
-                  $this->info->update($infoId[$index], $data);
-              } else {
-                  $this->info->save($data);
-              }
-          }
-      }
-      if (!empty($allErrors)) {
-        return redirect()->to('admin/pengumuman')->with('errors', $toInfo);      
-      }
-      return redirect()->to('admin/pengumuman');
-      
-  }
-  
-  
-  
-  
-
-
-  public function hapusInfo()
-  {
-    $requestData = $this->request->getJSON(); // Mengambil data dalam format JSON
-    $infoId = $requestData->info_id; // Mengakses info_id dari request JSON
-
-  if ($infoId) {
-      $this->info->delete($infoId);  // Menghapus data dari database
-      return $this->response->setJSON(['success' => true]);
     }
 
+    if(array_key_exists('info', $allErrors)){
+      $toInfo=(array)$allErrors['info'];
+    }
+
+    if (!empty($validData)) {
+      foreach ($validData as $index => $data) {
+        if (isset($infoId[$index]) && !empty($infoId[$index])) {
+          $data['if_id'] = $infoId[$index];
+          $this->info->update($infoId[$index], $data);
+        } else {
+          $this->info->save($data);
+        }
+      }
+    }
+    if (!empty($allErrors)) {
+      return redirect()->to('admin/pengumuman')->with('errors', $toInfo);      
+    }
+    return redirect()->to('admin/pengumuman');
+  }
+  
+  public function hapusInfo()
+  {
+    $requestData = $this->request->getJSON();
+    $infoId = $requestData->info_id;
+
+  if ($infoId) {
+      $this->info->delete($infoId); 
+      return $this->response->setJSON(['success' => true]);
+    }
     return $this->response->setJSON(['success' => false]);
   }
   
-
 }

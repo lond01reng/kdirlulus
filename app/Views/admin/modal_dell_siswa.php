@@ -20,7 +20,7 @@
           <form action="<?=base_url('admin/hapus_data_siswa')?>" method="POST">
           <?= csrf_field() ?>
             <input type="hidden" name="dlSiswa" value="<?=$data->sw_nis?>">
-            <button type="submit"  class="btn btn-sm btn-dark w-100" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus Data</button>
+            <button type="submit"  class="btn btn-sm btn-dark w-100" >Hapus Data</button>
         </form>
           </div>
           <div class="col-6">

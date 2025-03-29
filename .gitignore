@@ -4,6 +4,7 @@ gitignore
 
 # Ignoring the vendor directory (composer dependencies)
 /vendor/
+/tests/
 
 # Ignoring the public/assets directory
 #/public/assets/

@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\PublishModel;
 use App\Models\SiswaModel;
 use App\Models\SekolahModel;
+use App\Models\InfoModel;
 
 class Home extends BaseController
 {
@@ -14,6 +15,7 @@ class Home extends BaseController
       $this->publish=new PublishModel();
       $this->siswa=new SiswaModel();
       $this->sekolah=new SekolahModel();
+      $this->info=new InfoModel();
     }
     public function index()
     {
@@ -25,6 +27,7 @@ class Home extends BaseController
           'clr'=>'purple',
           'publish'=>$this->publish->waktuPublis(),
           'sch'=>$sch,
+          
         ];
       return view('publik',$data);
     }
@@ -37,8 +40,9 @@ class Home extends BaseController
           'act' =>'pribadi',
           'clr'=>'purple',
           'publish'=>$this->publish->waktuPublis(),
-          'info'=>$info,
+          'siswa'=>$info,
           'sch'=>$sch,
+          'info'=>$this->info->getPengumuman(),
         ];
         return view('detail_info',$data);
       }else{

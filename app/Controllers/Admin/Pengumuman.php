@@ -12,23 +12,32 @@ use CodeIgniter\HTTP\ResponseInterface;
 class Pengumuman extends BaseController
 {
   protected $tapel;
-  protected $publish;
   protected $info;
   protected $sekolah;
+  protected $publish;
+  protected $isPublish;
   public function __construct()
   {
     $this->tapel=new TapelModel();
-    $this->publish=new PublishModel();
     $this->info=new InfoModel();
     $this->sekolah=new SekolahModel();
+    $this->publish=new PublishModel();
+    $hasil=$this->publish->getWaktu();
+    if($hasil){
+      $this->isPublish = $hasil->pb_status;
+    }else{
+      $this->isPublish = null;
+    }
+    
   }
+ 
   public function index()
   {
     $vwaktu = $this->publish->getWaktu();
-    if (empty($vwaktu)) {
-        $vwaktu = new \stdClass();
-        $vwaktu->pb_status = '0';
-    }
+    // if (empty($vwaktu)) {
+    //     $vwaktu = new \stdClass();
+    //     $vwaktu->pb_status = '0';
+    // }
     $data=[
       'title'=>'Pengelolaan Pengumuman',
       'act' =>'pengumuman',
@@ -41,11 +50,14 @@ class Pengumuman extends BaseController
   }
 
   public function editWaktu(){
-      $data=$this->publish->getWaktu();
-      return view('admin/modal_waktu', ['data' => $data]);  
+    $data=$this->publish->getWaktu();
+    return view('admin/modal_waktu', ['data' => $data]);  
   }
 
   public function simpanWaktu(){
+    if($this->isPublish=='1'){
+      return redirect()->to(base_url('admin/pengumuman'))->with('errors',['Pengumuman sudah dipublish, tidak bisa melakukan perubahan data']);
+    }
     $valRule=[
       'wk_publis'=>'required|valid_date',
     ];
@@ -114,6 +126,9 @@ class Pengumuman extends BaseController
     if(array_key_exists('info', $allErrors)){
       $toInfo=(array)$allErrors['info'];
     }
+    if($this->isPublish=='1'){
+      return redirect()->to(base_url('admin/pengumuman'))->with('errors',['Pengumuman sudah dipublish, tidak bisa melakukan perubahan data']);
+    }
 
     if (!empty($validData)) {
       foreach ($validData as $index => $data) {
@@ -133,6 +148,9 @@ class Pengumuman extends BaseController
   
   public function hapusInfo()
   {
+    if($this->isPublish=='1'){
+      return redirect()->to(base_url('admin/beranda'))->with('errors',['Pengumuman sudah dipublish, tidak bisa melakukan perubahan data']);
+    }
     $requestData = $this->request->getJSON();
     $infoId = $requestData->info_id;
 

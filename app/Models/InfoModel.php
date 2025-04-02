@@ -25,6 +25,12 @@ class InfoModel extends Model
     public function getPengumuman()
     {
         $this->join('publish','pb_id=if_tapel');
+        // $this->where('pb_status','1');
+        return $this->findAll();
+    }
+    public function getInfo()
+    {
+        $this->join('publish','pb_id=if_tapel');
         $this->where('pb_status','1');
         return $this->findAll();
     }

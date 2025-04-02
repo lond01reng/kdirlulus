@@ -63,95 +63,16 @@
         </div>
         <div class="col-12">
         <h4>Pengumuman Kelulusan</h4>
-        <?php if(!empty($publish->pb_id)): ?>
         <form action="<?= base_url('admin/simpan_info') ?>" method="POST">
         <?= csrf_field() ?>
           <div id="divInfo"></div>
           <div class="mb-3">
+            <?php if($publish->pb_status!=='1'):?>
             <button type="button" class="btn btn-primary" onclick="tambahInfo(); return false;">Tambah Pengumuman</button> <button type="submit" class="btn btn-success">Simpan</button>
+            <?php endif; ?>
           </div>
         </form>
-        <?php endif;?>
         </div>
-    <script>
-      let ctInfo = 0;
-      function tambahInfo() {
-        ctInfo++;
-        const divInfo = document.getElementById('divInfo');
-        const newDiv = document.createElement('div');
-        newDiv.id = 'info_' + ctInfo;
-        newDiv.classList.add('mb-3');
-        newDiv.innerHTML = `
-          <div class="input-group">
-            <span type="button" class="btn btn-danger">${ctInfo}</span>
-            <input type="text" name="info[]" class="form-control" placeholder="Pengumuman">
-            <button type="button" class="btn btn-danger" onclick="delInfo(${ctInfo})">Hapus</button>
-          </div>
-        `;
-        divInfo.appendChild(newDiv);
-      }
-
-      function delInfo(id) {
-        const infoDiv = document.getElementById('info_' + id);          
-        if (!infoDiv) {
-          console.log('Elemen dengan id "info_' + id + '" tidak ditemukan.');
-          return;
-        }
-        infoDiv.remove();
-
-        const infoIdElement = infoDiv.querySelector('input[name="info_id[]"]');
-        if (infoIdElement) {
-            const infoId = infoIdElement.value;
-            // console.log('info_id ditemukan:', infoId);
-            fetch('<?= base_url('admin/hapus_info') ?>', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': '<?= csrf_hash() ?>'
-                },
-                body: JSON.stringify({ info_id: infoId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Data berhasil dihapus');
-                } else {
-                    console.log('Gagal menghapus data');
-                }
-            })
-            .catch(error => {
-                console.log('Terjadi kesalahan: ', error);
-            });
-        } else {
-            console.log('info_id tidak ditemukan');
-        }
-    }
-
-      const dataPengumuman = <?= json_encode($info) ?>;
-      function isiForm(data) {
-        const divInfo = document.getElementById('divInfo');
-        divInfo.innerHTML = '';
-          data.forEach((item, index) => {
-            ctInfo++;
-            const newDiv = document.createElement('div');
-            newDiv.id = 'info_' + ctInfo;
-            newDiv.classList.add('mb-2');
-            newDiv.innerHTML = `
-              <div class="input-group">
-                <input type="hidden" name="info_id[]" value="${item.if_id}">
-                <span type="button" class="btn btn-danger">${ctInfo}</span>
-                <input type="text" name="info[]" class="form-control" value="${item.if_desc || ''}">
-                <button type="button" class="btn btn-danger" onclick="delInfo(${ctInfo})">Hapus</button>
-              </div>
-            `;
-            divInfo.appendChild(newDiv);
-          });
-      }
-      if (dataPengumuman.length > 0) {
-        isiForm(dataPengumuman);
-      }
-    </script> 
       </div>
     </div>
   </div>
@@ -184,6 +105,102 @@
       showModal('#mPublis', '<?= base_url('admin/edit_publis'); ?>');
     });
   });
-
 </script> 
+<script>
+  let ctInfo = 0;
+  const status = <?= $publish->pb_status ?>;
+  
+  // Update the button dynamically based on status
+  function getButton() {
+    return (status !== 1) ? `<button type="button" class="btn btn-danger" onclick="delInfo(${ctInfo})">Hapus</button>` : '';
+  }
+
+  console.log(status);
+
+  // Function to add new info field
+  function tambahInfo() {
+    ctInfo++;
+    const divInfo = document.getElementById('divInfo');
+    const newDiv = document.createElement('div');
+    newDiv.id = 'info_' + ctInfo;
+    newDiv.classList.add('mb-3');
+    newDiv.innerHTML = `
+      <div class="input-group">
+        <span type="button" class="btn btn-danger">${ctInfo}</span>
+        <input type="text" name="info[]" class="form-control" placeholder="Pengumuman">
+        ${getButton()}
+      </div>
+    `;
+    divInfo.appendChild(newDiv);
+  }
+
+  // Function to delete an info field
+  function delInfo(id) {
+    const infoDiv = document.getElementById('info_' + id);          
+    if (!infoDiv) {
+      console.log('Elemen dengan id "info_' + id + '" tidak ditemukan.');
+      return;
+    }
+    infoDiv.remove();
+
+    const infoIdElement = infoDiv.querySelector('input[name="info_id[]"]');
+    if (infoIdElement) {
+        const infoId = infoIdElement.value;
+        fetch('<?= base_url('admin/hapus_info') ?>', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': '<?= csrf_hash() ?>'
+            },
+            body: JSON.stringify({ info_id: infoId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Data berhasil dihapus');
+            } else {
+                console.log('Gagal menghapus data');
+            }
+        })
+        .catch(error => {
+            // console.log('Terjadi kesalahan: ', error);
+            window.location.href = '<?= base_url('admin/pengumuman') ?>';
+        });
+    } else {
+        console.log('info_id tidak ditemukan');
+    }
+  }
+
+  // Populate the form with existing data
+  const dataPengumuman = <?= json_encode($info) ?>;
+  
+  function isiForm(data) {
+    const divInfo = document.getElementById('divInfo');
+    divInfo.innerHTML = '';
+    data.forEach((item, index) => {
+      ctInfo++;
+      const newDiv = document.createElement('div');
+      newDiv.id = 'info_' + ctInfo;
+      newDiv.classList.add('mb-2');
+      newDiv.innerHTML = `
+        <div class="input-group">
+          <input type="hidden" name="info_id[]" value="${item.if_id}">
+          <span type="button" class="btn btn-danger">${ctInfo}</span>
+          <input type="text" name="info[]" class="form-control" value="${item.if_desc || ''}">
+          ${getButton()}
+        </div>
+      `;
+      divInfo.appendChild(newDiv);
+    });
+  }
+
+  // If there are existing announcements, populate the form
+  if (dataPengumuman.length > 0) {
+    isiForm(dataPengumuman);
+  }
+</script>
+
+
+
 <?= $this->endSection() ?> 

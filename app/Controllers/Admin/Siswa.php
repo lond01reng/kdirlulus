@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 use App\Models\SiswaModel;
 use App\Models\SekolahModel;
+use App\Models\PublishModel;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -11,9 +12,18 @@ class Siswa extends BaseController
 {
   private $siswa;
   protected $sekolah;
+  protected $publish;
+  protected $isPublish;
   public function __construct(){
     $this->siswa = new SiswaModel();
     $this->sekolah=new SekolahModel();
+    $this->publish=new PublishModel();
+    $hasil=$this->publish->getWaktu();
+    if($hasil){
+      $this->isPublish = $hasil->pb_status;
+    }else{
+      $this->isPublish = null;
+    }
   }
   public function index()
   {
@@ -23,7 +33,8 @@ class Siswa extends BaseController
       'clr'=>'purple',
       'sch'=>$this->sekolah->getSch(),
       'siswa'=>$this->siswa->getData(),
-      'del_siswa'=>$this->siswa->getHapus()
+      'del_siswa'=>$this->siswa->getHapus(),
+      'publis'=>$this->isPublish,
       ];
     return view('admin/data_siswa',$data);
   }

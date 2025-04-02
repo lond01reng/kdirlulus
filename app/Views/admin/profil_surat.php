@@ -13,8 +13,10 @@
             <img src="<?=base_url();?>assets/img/favicon.png" id="imgSuratPreview" alt="kdirLULUS Logo" class="img-fluid elevation-3" style="opacity: .8" width="200px" >
           <?php endif; ?>
         </div>
+        <?php if($isPub!=='1'):?>
         <input type="file" name="imgsurat" class="d-none" id="imageSurat" onchange="this.form.submit()">
         <button class="btn w-100" onclick="document.getElementById('imageSurat').click();">Ganti Gambar</button>
+        <?php endif;?>
       </form>
       </div>
       <div class="col-sm-9">
@@ -53,7 +55,9 @@
               <input type="text" class="form-control" id="nip"  name="nip" placeholder="NIP" value="<?=!empty($sch)?$sch->sc_nip:''?>">
             </div>
           </div>
+          <?php if($isPub!=='1'):?>
           <button type="submit" class="btn btn-primary btn-block">Simpan Profil</button>
+          <?php endif;?>
         </form> 
       </div>
     </div>

@@ -9,7 +9,9 @@
         <div class="row">
           <div class="col-md-12 table-responsive">
             <?= view('admin/info_sesi'); ?>
+            <?php if ($publis!=='1'):?>
             <button type="button" class="btn btn-sm btn-primary w-100" id="mSiswa"><i class="fas fa-plus-circle"></i> Tambah Siswa</button>
+            <?php endif;?>
             <table class="table table-bordered table-striped table-sm">
               <thead class="text-center">
                 <tr>
@@ -35,14 +37,16 @@
                   <td><?=$sw->sw_jurusan;?></td>
                   <td><?=$sw->sw_status=='1'?'Lulus':'Tidak Lulus';?></td>
                   <td>
+                  <?php if ($publis!=='1'):?>
                   <button type="button" class="btn btn-sm btn-primary mEdit" data-id="<?=$sw->sw_nis;?>"><i class="fas fa-user-edit"></i></button> 
                   <button type="button" class="btn btn-sm btn-danger mDell" data-id="<?=$sw->sw_nis;?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus siswa"><i class="fas fa-trash"></i></button> 
+                  <?php endif;?>
                   </td>
                 </tr>
               <?php endforeach;?>
               </tbody>
             </table>
-
+            
             <?php if(!empty($del_siswa)):?>
               Daftar Siswa Dihapus Dari Pengumuman
               <table class="table table-bordered table-dark table-sm">
@@ -70,7 +74,9 @@
                   <td><?=$del->sw_jurusan;?></td>
                   <td><?=$del->sw_status=='1'?'Lulus':'Tidak Lulus';?></td>
                   <td>
+                  <?php if ($publis!=='1'):?>
                   <button type="button" class="btn btn-sm btn-danger mRestore" data-id="<?=$del->sw_nis;?>"><i class="fas fa-trash-restore"></i> Pulihkan</button> 
+                  <?php endif; ?>
                   </td>
                 </tr>
               <?php endforeach;?>

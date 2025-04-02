@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 use App\Models\SekolahModel;
+use App\Models\PublishModel;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -9,9 +10,18 @@ use CodeIgniter\HTTP\ResponseInterface;
 class User extends BaseController
 {
   protected $sekolah;
+  protected $publish;
+  protected $isPublish;
   
   public function __construct(){
     $this->sekolah = new SekolahModel();
+    $this->publish=new PublishModel();
+    $hasil=$this->publish->getWaktu();
+    if($hasil){
+      $this->isPublish = $hasil->pb_status;
+    }else{
+      $this->isPublish = null;
+    }
   }
   public function index()
   {
@@ -20,6 +30,7 @@ class User extends BaseController
       'act'=>'profil',
       'clr'=>'purple',
       'sch' =>$this->sekolah->getSch(),
+      'isPub'=>$this->isPublish,
     ];
     return view('admin/profil', $data);
   }

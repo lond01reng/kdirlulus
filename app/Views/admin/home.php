@@ -49,8 +49,8 @@
               </div>
             </div>
           </div>
-        <div class="col-lg-6 col-6">
-            <div class="small-box bg-<?=(empty($waktu->pb_status)|| $waktu->pb_status==0)?'secondary':$clr;?>">
+          <div class="col-lg-6 col-6">
+            <div class="small-box bg-<?=(empty($waktu->pb_status)|| $waktu->pb_status==0)?'danger':$clr;?>">
               <div class="inner">
                 <?php 
                   if (empty($waktu->pb_status)|| $waktu->pb_status==0){
@@ -66,6 +66,17 @@
               <div class="icon">
                 <i class="fas fa-network-wired"></i>
               </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card card-outline card-primary p-2">
+              <h5>Informasi Kelulusan</h5>
+              <?php
+              $i=1;
+              foreach($info as $inf){
+                echo $i++.'. '.$inf->if_desc.'<br>';
+              }
+              ?>
             </div>
           </div>
         </div>

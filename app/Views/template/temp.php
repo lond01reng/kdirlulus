@@ -30,7 +30,7 @@ $clr='purple';
         <a class="nav-link" data-bs-toggle="dropdown" href="#">
           <i class="fas fa-user-cog text-dark"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
           <a href="#" class="dropdown-item"><i class="fas fa-user-circle mr-2"></i><?= session()->get('name'); ?></a>
           <div class="dropdown-divider"></div>
           <a href="<?= base_url(); ?>admin/logout" class="dropdown-item">

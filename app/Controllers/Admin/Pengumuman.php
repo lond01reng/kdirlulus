@@ -39,7 +39,7 @@ class Pengumuman extends BaseController
       $vwaktu = (object)[
           'pb_status' => 0
       ];
-  }
+    }
     $data=[
       'title'=>'Pengelolaan Pengumuman',
       'act' =>'pengumuman',
@@ -49,10 +49,16 @@ class Pengumuman extends BaseController
       'sch'=>$this->sekolah->getSch(),
     ];
     return view('admin/pengumuman',$data);
+
   }
 
   public function editWaktu(){
     $data=$this->publish->getWaktu();
+    if($data===null){
+      $data=(object)[
+        'pb_status' => 0
+      ];
+    }
     return view('admin/modal_waktu', ['data' => $data]);  
   }
 

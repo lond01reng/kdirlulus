@@ -24,7 +24,12 @@ class PublishModel extends Model
     public function getWaktu(){
         $this->db->table($this->table);
         $this->where('pb_id', session('tapel'));
-        return $this->first();
+        $data = $this->first();
+
+        // if ($data === null) {
+        //     return ['pb_status' => 0];
+        // }
+        return $data;
     }
 
     public function simpanWaktu($waktu){

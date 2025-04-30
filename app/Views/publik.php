@@ -110,6 +110,10 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
       $publish = str_replace(' ', 'T', $publish);
     ?>
       var countDownDate = new Date("<?php echo date('Y-m-d\TH:i:s', strtotime($publish)); ?>").getTime();
+      function padZero(num) {
+        return num < 10 ? '0' + num : num;
+      }
+
       var x = setInterval(function () {
         var now = new Date().getTime();
         var distance = countDownDate - now;
@@ -117,16 +121,16 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        $("#days").html(days);
-        $("#hours").html(hours);
-        $("#minutes").html(minutes);
-        $("#seconds").html(seconds);
+        $("#days").html(padZero(days));
+        $("#hours").html(padZero(hours));
+        $("#minutes").html(padZero(minutes));
+        $("#seconds").html(padZero(seconds));
         if (distance < 0) {
           clearInterval(x);
-          $("#days").html("0");
-          $("#hours").html("0");
-          $("#minutes").html("0");
-          $("#seconds").html("0");
+          $("#days").html("00");
+          $("#hours").html("00");
+          $("#minutes").html("00");
+          $("#seconds").html("00");
         }
       }, 1000);
   });

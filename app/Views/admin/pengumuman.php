@@ -64,10 +64,10 @@
         <div class="col-12">
         <h4>Pengumuman Kelulusan</h4>
         <form action="<?= base_url('admin/simpan_info') ?>" method="POST">
-        <?= csrf_field() ?>
+        <?= csrf_field()?>
           <div id="divInfo"></div>
           <div class="mb-3">
-            <?php if($publish->pb_status!=='1'):?>
+            <?php if(!empty($publish->pb_waktu) AND $publish ->pb_status==0):?>
             <button type="button" class="btn btn-primary" onclick="tambahInfo(); return false;">Tambah Pengumuman</button> <button type="submit" class="btn btn-success">Simpan</button>
             <?php endif; ?>
           </div>

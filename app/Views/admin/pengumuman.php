@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="col-lg-6 col-6">
-          <div class="small-box bg-<?=$publish->pb_status==0?'secondary':$clr;?>">
+          <div class="small-box bg-<?=empty($publish)?'secondary':$clr;?>">
             <div class="inner">
               <?php 
                 if ($publish->pb_status==1){

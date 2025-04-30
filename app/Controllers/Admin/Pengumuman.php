@@ -34,10 +34,12 @@ class Pengumuman extends BaseController
   public function index()
   {
     $vwaktu = $this->publish->getWaktu();
-    // if (empty($vwaktu)) {
-    //     $vwaktu = new \stdClass();
-    //     $vwaktu->pb_status = '0';
-    // }
+
+    if ($vwaktu === null) {
+      $vwaktu = (object)[
+          'pb_status' => 0
+      ];
+  }
     $data=[
       'title'=>'Pengelolaan Pengumuman',
       'act' =>'pengumuman',

@@ -113,11 +113,11 @@ class Pengumuman extends BaseController
         $validation->reset();
         $validation->setRules([
           'info' => [
-            'rules' => 'required|trim|min_length[24]|alpha_numeric_punct',
+            'rules' => 'required|trim|min_length[24]|regex_match[/^[A-Za-z0-9 ~!#$%&*\-_\+=|:\.,\?@\'"()\s]+$/]',
             'errors' => [
               'required' => 'Isikan pengumuman ke ' . ($index + 1),
               'min_length' => 'Pengumuman ke ' . ($index + 1) . ' minimal 24 karakter',
-              'alpha_numeric_punct' => 'Terdapat karakter ilegal dalam pengumuman ' . ($index + 1),
+              'regex_match' => 'Terdapat karakter ilegal dalam pengumuman ' . ($index + 1),
             ]
           ],
         ]);

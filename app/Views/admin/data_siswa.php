@@ -56,7 +56,6 @@
                   <td>Nama</td>
                   <td>TTL</td>
                   <td>Kelas</td>
-                  <td>Jurusan</td>
                   <td>Status</td>
                   <td>Aksi</td>
                 </tr>
@@ -70,7 +69,6 @@
                   <td><?=$del->sw_nama;?></td>
                   <td><?=$del->sw_tempat.', '.$del->sw_tgl;?></td>
                   <td><?=$del->sw_kelas;?></td>
-                  <td><?=$del->sw_jurusan;?></td>
                   <td><?=$del->sw_status=='1'?'Lulus':'Tidak Lulus';?></td>
                   <td>
                   <?php if ($publis!=='1'):?>

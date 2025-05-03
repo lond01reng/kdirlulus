@@ -29,6 +29,7 @@ class SiswaModel extends Model
     return $this->find();
   }
   public function getHapus(){
+    $this->where('sw_tapel', session('tapel'));
     return $this->onlyDeleted()->findAll();   
   }
 

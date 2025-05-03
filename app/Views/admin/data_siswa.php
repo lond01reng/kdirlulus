@@ -15,26 +15,25 @@
             <table class="table table-bordered table-striped table-sm">
               <thead class="text-center">
                 <tr>
-                  <td>NIS</td>
+                  <td>No</td>
                   <td>NISN</td>
                   <td>Nama</td>
                   <td>TTL</td>
                   <td>Kelas</td>
-                  <td>Jurusan</td>
                   <td>Status</td>
                   <td>Aksi</td>
                 </tr>
               </thead>
               <tbody>
 
-              <?php foreach($siswa as $sw): ?>
+              <?php $n=1; foreach($siswa as $sw): ?>
+
                 <tr class="table-<?=$sw->sw_status=='1'?"info":"danger";?>">
-                  <td><?=$sw->sw_nis;?></td>
+                  <td><?=$n++;?></td>
                   <td><?=$sw->sw_nisn;?></td>
                   <td><?=$sw->sw_nama;?></td>
                   <td><?=$sw->sw_tempat.', '.$sw->sw_tgl;?></td>
                   <td><?=$sw->sw_kelas;?></td>
-                  <td><?=$sw->sw_jurusan;?></td>
                   <td><?=$sw->sw_status=='1'?'Lulus':'Tidak Lulus';?></td>
                   <td>
                   <?php if ($publis!=='1'):?>

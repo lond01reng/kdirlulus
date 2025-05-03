@@ -24,6 +24,8 @@ class SiswaModel extends Model
   public function getData() {
     $this->db->table($this->table);
     $this->where('sw_tapel', session('tapel'));
+    $this->orderBy('sw_kelas', 'ASC');
+    $this->orderBy('sw_nama', 'ASC');
     return $this->find();
   }
   public function getHapus(){

@@ -33,9 +33,9 @@ $clr='purple';
         <span class="brand-text font-weight-light"><?= !empty($sch->sc_nama)?esc($sch->sc_nama):'kdir'; ?></span>
       </a>
 
-      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <li class="nav-item">
         <h6 id="date-time" class="text-center nav-link"></h6>

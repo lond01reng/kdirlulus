@@ -21,34 +21,34 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
       <img src="<?=$img;?>" alt="sekolahLogo" class="img-fluid w-25" width="">
       </div>
     </div>
-    <div class="row text-center">
+    <div class="row text-center bg-info rounded p-3">
     <?php if($publish->pb_status==='1'): ?>
       <?php if($publish->pb_waktu > date('Y-m-d H:i:s')): ?>
         <div class="col-12">
-          <h3 style="font-size: 4vw;">Waktu Menuju Pengumuman Kelulusan <?=$tp?></h3>
+          <h3 style="font-size: 4vw;">Waktu Pengumuman Kelulusan <?=$tp?></h3>
         </div>
         <div class="col-3">
-          <div class="p-4 bg-light rounded shadow-sm">
+          <div class="bg-light rounded shadow-sm">
             <div id="days" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
-            <div class="small text-muted">Hari</div>
+            <div class="text-muted" style="font-size: 3vw;">Hari</div>
           </div>
         </div>
         <div class="col-3">
-          <div class="p-4 bg-light rounded shadow-sm">
+          <div class="bg-light rounded shadow-sm">
             <div id="hours" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
-            <div class="small text-muted">Jam</div>
+            <div class="text-muted" style="font-size: 3vw;">Jam</div>
           </div>
         </div>
         <div class="col-3">
-          <div class="p-4 bg-light rounded shadow-sm">
+          <div class="bg-light rounded shadow-sm">
             <div id="minutes" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
-            <div class="small text-muted">Menit</div>
+            <div class="text-muted" style="font-size: 3vw;">Menit</div>
           </div>
         </div>
         <div class="col-3">
-          <div class="p-4 bg-light rounded shadow-sm">
+          <div class="bg-light rounded shadow-sm">
             <div id="seconds" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
-            <div class="small text-muted">Detik</div>
+            <div class="text-muted" style="font-size: 3vw;">Detik</div>
           </div>
         </div>
       <?php else: ?>

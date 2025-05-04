@@ -8,7 +8,7 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
 ?>
     <div class="row text-center">
         <div class="col-12">
-          <h4 class="text-primary">Pengumuman Kelulusan <?=$tp?></h4>
+          <h4 class="text-primary" style="font-size: 3vw;">Pengumuman Kelulusan <?=$tp?></h4>
         </div>
       <div class="col-12">
       <?php  $uploadPath = ROOTPATH . 'public/uploads/logo_sekolah.jpg';
@@ -25,7 +25,7 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
     <?php if($publish->pb_status==='1'): ?>
       <?php if($publish->pb_waktu > date('Y-m-d H:i:s')): ?>
         <div class="col-12">
-          <h3>Waktu Menuju Pengumuman Kelulusan <?=$tp?></h3>
+          <h3 style="font-size: 4vw;">Waktu Menuju Pengumuman Kelulusan <?=$tp?></h3>
         </div>
         <div class="col-3">
           <div class="p-4 bg-light rounded shadow-sm">
@@ -87,11 +87,16 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
       <?php endif; ?>
     <?php else: ?>
       <div class="col-12 d-flex justify-content-center align-items-center">
-        <div class="d-flex align-items-center">
-          <i class="fas fa-exclamation-triangle text-warning mr-2" style="font-size: 72px;"></i>
-          <div>
-            <h1>Pengumuman Kelulusan</h1>
-            <h1><span class="text-warning">BELUM</span> Dipublikasikan</h1>
+        <div class="position-relative text-center p-5" style="overflow: hidden;">
+          <i class="fas fa-exclamation-triangle text-warning position-absolute"
+            style="font-size: 15vw; opacity: 0.1; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0;">
+          </i>
+
+          <div class="position-relative z-1">
+            <h1 class="fw-bold" style="font-size: 4vw;">Pengumuman Kelulusan</h1>
+            <h2 style="font-size: 4vw;">
+              <span class="text-warning">BELUM</span> Dipublikasikan
+            </h2>
           </div>
         </div>
       </div>

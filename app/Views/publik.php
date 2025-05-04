@@ -29,25 +29,25 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
         </div>
         <div class="col-3">
           <div class="p-4 bg-light rounded shadow-sm">
-            <div id="days" class="display-1 text-primary w-100"></div>
+            <div id="days" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
             <div class="small text-muted">Hari</div>
           </div>
         </div>
         <div class="col-3">
           <div class="p-4 bg-light rounded shadow-sm">
-            <div id="hours" class="display-1 text-primary"></div>
+            <div id="hours" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
             <div class="small text-muted">Jam</div>
           </div>
         </div>
         <div class="col-3">
           <div class="p-4 bg-light rounded shadow-sm">
-            <div id="minutes" class="display-1 text-primary"></div>
+            <div id="minutes" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
             <div class="small text-muted">Menit</div>
           </div>
         </div>
         <div class="col-3">
           <div class="p-4 bg-light rounded shadow-sm">
-            <div id="seconds" class="display-1 text-primary"></div>
+            <div id="seconds" class="display-1 text-primary text-nowrap"  style="font-size: 10vw;"></div>
             <div class="small text-muted">Detik</div>
           </div>
         </div>
@@ -131,6 +131,10 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
           $("#hours").html("00");
           $("#minutes").html("00");
           $("#seconds").html("00");
+          if (!sessionStorage.getItem("pageRefreshed")) {
+            sessionStorage.setItem("pageRefreshed", "true");
+            location.reload();
+          }
         }
       }, 1000);
   });

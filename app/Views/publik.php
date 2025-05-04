@@ -21,7 +21,7 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
       <img src="<?=$img;?>" alt="sekolahLogo" class="img-fluid w-25" width="">
       </div>
     </div>
-    <div class="row text-center bg-info rounded p-3">
+    <div class="row text-center rounded p-3">
     <?php if($publish->pb_status==='1'): ?>
       <?php if($publish->pb_waktu > date('Y-m-d H:i:s')): ?>
         <div class="col-12">

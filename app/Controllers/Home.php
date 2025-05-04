@@ -72,7 +72,11 @@ class Home extends BaseController
         return redirect()->to(base_url('/'))->withInput()->with('errors', $this->validator->getErrors());
       }else{
         $info=$this->siswa->getNisn($nisn,$tgl);
-        return redirect()->to(base_url('info_detail'))->with('data', $info);
+        if(empty($info)){
+          return redirect()->to(base_url('/'))->withInput()->with('nodata', 'Data Tidak ditemukan, ulangi pencarian!');
+        }else{
+          return redirect()->to(base_url('info_detail'))->with('data', $info); 
+        }
       }
     }
 }

@@ -7,6 +7,9 @@ $tp='20'.$publish->pb_id.'/20'.$publish->pb_id+1;
 $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
 ?>
     <div class="row text-center">
+        <div class="col-12">
+          <h4 class="text-primary">Pengumuman Kelulusan <?=$tp?></h4>
+        </div>
       <div class="col-12">
       <?php  $uploadPath = ROOTPATH . 'public/uploads/logo_sekolah.jpg';
         if (file_exists($uploadPath)){
@@ -15,10 +18,7 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
           $img= base_url('assets/img/favicon.png');
         }
       ?>
-      <img src="<?=$img;?>" alt="sekolahLogo" class="" width="150px">
-      <h2>
-      <?= $scnm; ?>
-      </h2>
+      <img src="<?=$img;?>" alt="sekolahLogo" class="img-fluid w-25" width="">
       </div>
     </div>
     <div class="row text-center">
@@ -52,9 +52,14 @@ $scnm=(!empty($sch->sc_nama))?esc($sch->sc_nama):"kdir";
           </div>
         </div>
       <?php else: ?>
-        <div class="col-12">
-          <h3 class="text-primary">Pengumuman Kelulusan <?=$tp?></h3>
-        </div>
+        <?php if (! empty(session()->getFlashdata('nodata'))): ?>
+          <div class="alert alert-danger alert-dismissible fade show col-sm-6 mx-auto" role="alert">
+            <?= session('nodata');?>
+              <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        <?php endif ?>
         <form action="<?= base_url('cari_data'); ?>" method="POST">
         <?= csrf_field() ?>
           <div class="row justify-content-center pt-4">

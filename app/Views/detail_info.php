@@ -14,7 +14,20 @@
       justify-content: center;
       align-items: center;
     }
-    </style>
+
+    .foto-td {
+      width: 120px;
+    }
+    .foto-siswa {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      display: block;
+    }
+    .table td {
+      vertical-align: top;
+    }
+</style>
 <?= $this->endSection() ?> 
 <?= $this->extend('template/topm') ?>
 <?= $this->section('konten') ?>
@@ -42,15 +55,15 @@
         </div>
         <div class="card-body">
           <div class="ribbon-wrapper ribbon-lg">
-          <div class="ribbon bg-<?=$ribbon;?> text-sm">
-            <?=$ucapan;?>
+            <div class="ribbon bg-<?=$ribbon;?> text-sm">
+              <?=$ucapan;?>
+            </div>
           </div>
-        </div>
         <i class="fas fa-user-<?=$ico;?> background-icon"></i>
           <table class="table table-borderless table-sm">
             <tbody>
               <tr>
-                <td>Nama</td><td><?=strtoupper($siswa->sw_nama);?></td>
+                <td rowspan="4"   class="foto-td" ><img src="https://hadir.smknngadirojo.sch.id/foto_siswa/<?=$siswa->sw_nisn;?>.jpg" alt=""  class="foto-siswa"></td><td>Nama</td><td><?=strtoupper($siswa->sw_nama);?></td>
               </tr>
               <tr>
                 <td>NIS/NISN</td><td><?=$siswa->sw_nis.'/'.$siswa->sw_nisn;?></td>
@@ -62,10 +75,10 @@
                 <td>Kelas </td><td><?=$siswa->sw_kelas.' ('.$siswa->sw_jurusan.')';?></td>
               </tr>
               <tr>
-                <td colspan=2>Rapat Kelulusan tahun <?='20'.$siswa->sw_tapel.'/20'.($siswa->sw_tapel+1);?> <?=$sch;?> menyatakan: </td>
+                <td colspan=3>Rapat Kelulusan tahun <?='20'.$siswa->sw_tapel.'/20'.($siswa->sw_tapel+1);?> <?=$sch;?> menyatakan: </td>
               </tr>
               <tr>
-                <td colspan=2 class="text-center">
+                <td colspan=3 class="text-center">
                   <button class="btn btn-<?=$ribbon;?> w-100"><h4><?=$ucapan?> Anda <?=$status;?><h4></button>
                 </td>
               </tr>
